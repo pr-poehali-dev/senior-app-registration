@@ -9,6 +9,7 @@ import Grandchildren from './Grandchildren';
 import Doctors from './Doctors';
 import Gallery from './Gallery';
 import Profile from './Profile';
+import Medications from './Medications';
 
 const API_AUTH_URL = 'https://functions.poehali.dev/a1c319aa-17e9-4504-9466-3f6378fd7d97';
 
@@ -33,7 +34,8 @@ const Index = () => {
     lastName: '',
     middleName: '',
     email: '',
-    birthDate: ''
+    birthDate: '',
+    sosPinCode: ''
   });
 
   useEffect(() => {
@@ -218,6 +220,20 @@ const Index = () => {
                     onChange={(e) => setFormData({ ...formData, birthDate: e.target.value })}
                     className="h-16 text-2xl px-6"
                   />
+                  <p className="text-sm text-muted-foreground mt-2">ℹ️ Нужна для медицинской карты и поздравления с днём рождения</p>
+                </div>
+
+                <div>
+                  <label className="text-xl font-medium mb-3 block">PIN-код для кнопки SOS *</label>
+                  <Input
+                    type="password"
+                    maxLength={6}
+                    value={formData.sosPinCode}
+                    onChange={(e) => setFormData({ ...formData, sosPinCode: e.target.value })}
+                    placeholder="6 цифр"
+                    className="h-16 text-2xl px-6"
+                  />
+                  <p className="text-sm text-muted-foreground mt-2">🔒 Защита от случайного нажатия кнопки SOS</p>
                 </div>
               </>
             )}
@@ -233,8 +249,8 @@ const Index = () => {
 
   const menuItems = [
     { id: 'home', icon: 'Home', label: 'Главная' },
+    { id: 'medications', icon: 'Pill', label: 'Лекарства' },
     { id: 'grandchildren', icon: 'Users', label: 'Внуки' },
-    { id: 'gallery', icon: 'Image', label: 'Галерея' },
     { id: 'doctors', icon: 'Stethoscope', label: 'Врачи' },
     { id: 'profile', icon: 'User', label: 'Профиль' }
   ];
@@ -243,6 +259,8 @@ const Index = () => {
     switch (currentPage) {
       case 'home':
         return <Home user={currentUser} onLogout={handleLogout} />;
+      case 'medications':
+        return <Medications user={currentUser} />;
       case 'grandchildren':
         return <Grandchildren user={currentUser} />;
       case 'doctors':
