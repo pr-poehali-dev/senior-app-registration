@@ -1,0 +1,35 @@
+{
+  "tests": [
+    {
+      "name": "Add grandchild",
+      "method": "POST",
+      "body": {
+        "userId": 1,
+        "firstName": "Маша",
+        "lastName": "Петрова",
+        "middleName": "Ивановна",
+        "birthDate": "2015-03-20",
+        "gender": "female",
+        "info": "Любит рисовать"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true,
+        "grandchild": {
+          "firstName": "string"
+        }
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Get grandchildren list",
+      "method": "GET",
+      "path": "/?userId=1",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

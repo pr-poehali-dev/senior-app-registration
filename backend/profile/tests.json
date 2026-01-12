@@ -1,0 +1,32 @@
+{
+  "tests": [
+    {
+      "name": "Update medical card",
+      "method": "POST",
+      "body": {
+        "action": "updateMedicalCard",
+        "userId": 1,
+        "medicalCardNumber": "МК-123456"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Save mood",
+      "method": "POST",
+      "body": {
+        "action": "saveMood",
+        "userId": 1,
+        "mood": "happy"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
